@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginDto } from 'src/app/dtos/LoginDto';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,14 +15,17 @@ export class LoginComponent {
   constructor(private authService: AuthService, private route: Router) { }
 
   onSubmit() {
-    this.authService.login(this.email, this.password).subscribe(
+    const loginDto: LoginDto = {
+      email : this.email,
+      password : this.password,
+    }
+    this.authService.login(loginDto).subscribe(
       (response) => {
-        // Handle successful login, e.g., store token in local storage and navigate to another page
         console.log('Login successful!', response);
-        this.route.navigate(["welcome"])
+        this.route.navigate(["home"])
       },
       (error) => {
-        // Handle login error, e.g., display error message
+        
         console.error('Login failed!', error);
       }
     );
