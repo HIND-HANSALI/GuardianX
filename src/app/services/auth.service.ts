@@ -35,5 +35,22 @@ export class AuthService {
   }
 
 
+  register(user: RegisterDto): Observable<string>{
+    this.removeToken()
+    return this.http.post<{ token : string }>(`${environment.apiUrl}/auth/register`, user)
+      .pipe(
+         map(response => {
+           this.setToken(response.token)
+           return response.token
+         }),
+      );
+  }
+
+
+  // testApi(): Observable<string> {
+  //   return this.http.get<string>(`${environment.apiUrl}/auth/test`);
+  // }
+
  
+
 }
