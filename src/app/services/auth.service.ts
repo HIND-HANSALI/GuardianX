@@ -51,6 +51,9 @@ export class AuthService {
   //   return this.http.get<string>(`${environment.apiUrl}/auth/test`);
   // }
 
- 
+  testApi(): Observable<string> {
+    
+    return this.http.get(`${environment.apiUrl}/auth/test`, { responseType: 'text' });
+  }
 
 }
