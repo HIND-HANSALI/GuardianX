@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from 'src/environement/environment';
 import { LoginDto } from '../dtos/LoginDto';
 import { RegisterDto } from '../dtos/RegisterDto';
+import { AuthenticationResponseDTO } from '../dtos/responses/AuthenticationResponseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +12,21 @@ import { RegisterDto } from '../dtos/RegisterDto';
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  // login(email: string, password: string) {
-  //   return this.http.post<any>(`${environment.apiUrl}/auth/authenticate`, {email, password });
-  // }
-  login(user: LoginDto): Observable<string> {
-    this.removeToken();
-    return this.http.post<{ token : string }>(`${environment.apiUrl}/auth/authenticate`, user)
-      .pipe(
-        map(response => {
-          this.setToken(response.token)
-          return response.token
-        }),
-      );
+  getAllUsers(): Observable<AuthenticationResponseDTO[]> {
+    return this.http.get<AuthenticationResponseDTO[]>(`${environment.apiUrl}/auth`);
   }
 
+  login(user: LoginDto): Observable<AuthenticationResponseDTO> {
+    return this.http.post<AuthenticationResponseDTO>(`${environment.apiUrl}/auth/authenticate`, user)
+      .pipe(
+        map(response => {
+          
+          this.setToken(response.token);
+
+          return response;
+        })
+      );
+  }
 
   setToken(token: string): void {
     localStorage.setItem('token', token);
@@ -55,5 +57,27 @@ export class AuthService {
     
     return this.http.get(`${environment.apiUrl}/auth/test`, { responseType: 'text' });
   }
+
+
+
+  
+  // login(email: string, password: string) {
+  //   return this.http.post<any>(`${environment.apiUrl}/auth/authenticate`, {email, password });
+  // }
+
+  // login(user: LoginDto): Observable<string> {
+  //   this.removeToken();
+  //   return this.http.post<{ token : string }>(`${environment.apiUrl}/auth/authenticate`, user)
+  //     .pipe(
+  //       map(response => {
+  //         this.setToken(response.token)
+  //         return response.token
+  //       }),
+  //     );
+  // }
+
+  // login(user: LoginDto): Observable<AuthenticationResponseDTO> {
+  //   return this.http.post<AuthenticationResponseDTO>(`${environment.apiUrl}/auth/authenticate`, user);
+  // }
 
 }

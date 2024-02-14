@@ -1,0 +1,19 @@
+<p>user works!</p>
+<div class="d-flex p-5 text-center">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th scope="col">#</th> -->
+          <th scope="col">Role</th>
+          <th>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <!-- <th scope="row">{{ role.id }}</th> -->
+          <td>{{ user.role.name }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -15,7 +15,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'forbidden',component: AccessDeniedComponent},
   {path: 'home',component: HomeComponent, canActivate:[authGuard]},
-  {path :'role',component : RoleComponent ,canActivate: [authGuard],resolve: {roles: RoleResolver }}
+  {path :'role',component : RoleComponent ,canActivate: [authGuard],resolve: {roles: RoleResolver }},
+  {path :'user',component : UserComponent,resolve: {users: UserResolver }}
 ];
 
 @NgModule({
