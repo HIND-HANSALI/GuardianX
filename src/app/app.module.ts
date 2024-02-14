@@ -11,6 +11,8 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar.component'
 import { AccessDeniedComponent } from './components/errors/access-denied/access-denied.component';
 import { HomeComponent } from './components/home/home.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { RoleComponent } from './components/role/role.component';
+import { UserComponent } from './components/auth/user/user.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     SidebarComponent,
     AccessDeniedComponent,
     HomeComponent,
+    RoleComponent,
+    UserComponent,
     
   ],
   imports: [

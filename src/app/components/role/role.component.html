@@ -1,0 +1,17 @@
+<p>role works!</p>
+<div class="d-flex p-5 text-center">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th scope="col">#</th> -->
+          <th scope="col">ROLES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roles">
+          <!-- <th scope="row">{{ role.id }}</th> -->
+          <td>{{ role.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
