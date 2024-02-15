@@ -22,6 +22,9 @@ export class LoginComponent {
     this.authService.login(loginDto).subscribe(
       (response) => {
         console.log('Login successful!', response);
+
+        localStorage.setItem('role', response.role.name);
+
         this.route.navigate(["home"])
       },
       (error) => {
