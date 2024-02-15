@@ -4,19 +4,27 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mx-auto">
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/login']">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" [routerLink]="['/login']">Home</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['/user']" *ngIf="isLoggedIn()">Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/user']">Users</a>
+          <a class="nav-link"  [routerLink]="['/role']" *ngIf="isLoggedIn() && hasAuthority()">Roles</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  [routerLink]="['/role']" href="#">Roles</a>
+          <a class="nav-link " href="#">A propos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link " href="#">Actualités</a>
         </li>
       </ul>
     </div>
+    <form class="d-flex">
+      <a class="btn btn-dark me-1" routerLink="/login" *ngIf="isLoggedOut()">Login</a>
+      <a class="btn btn-dark" routerLink="/register" *ngIf="isLoggedOut()">Register</a>
+      <a class="btn btn-dark" (click)="Logout()" *ngIf="isLoggedIn()">Logout</a>
+    </form>
   </nav>
